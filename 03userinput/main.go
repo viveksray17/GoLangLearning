@@ -4,16 +4,20 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func main() {
-	var welcome string = "Welcome to user input"
+	var welcome string = "Welcome to the calculator app"
 	fmt.Println(welcome)
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter the rating for our program: ")
+	fmt.Print("Enter the first number: ")
+	firstnum, _ := reader.ReadString('\n')
+	fmt.Print("Enter the second number: ")
+	secondnum, _ := reader.ReadString('\n')
 
-	// comma ok // error ok
-	input, _ := reader.ReadString('\n') // _ is for catching the error
-	fmt.Printf("Thanks for rating, %v", input)
-	fmt.Printf("Type of this rating is %T\n", input)
+	intfirstnum, _ := strconv.ParseFloat(strings.TrimSpace(firstnum), 64)
+	intsecondnum, _ := strconv.ParseFloat(strings.TrimSpace(secondnum), 64)
+	fmt.Printf("The sum of both the numbers is %v\n", intfirstnum+intsecondnum)
 }
